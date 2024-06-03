@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class Destruir : MonoBehaviour
 {
+    public GameObject impactEffectPrefab;
+
     // Start is called before the first frame update
     void OnCollisionEnter(Collision collision)
     {
-        // Comprueba si la bala ha colisionado con un objeto que no sea ella misma
-        if (!collision.gameObject.CompareTag("Bullet"))
-        {
-            // Destruye la bala
-            Destroy(gameObject);
-        }
+        // Instancia el efecto de impacto en el punto de colisión
+        GameObject impactEffect = Instantiate(impactEffectPrefab, collision.contacts[0].point, Quaternion.identity);
+        // Destruye el efecto de impacto después de un corto periodo
+        Destroy(impactEffect, 1f);
+
+        // Destruye el proyectil
+        Destroy(gameObject);
     }
 }
 
