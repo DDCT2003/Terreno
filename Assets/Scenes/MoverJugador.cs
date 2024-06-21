@@ -124,7 +124,7 @@ public class CameraFreeMovement : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         // Verificar si la colisión es con una bala
-        if (collision.gameObject.name == "Enemigo")
+        if (collision.gameObject.name == "Enemigo" || collision.gameObject.name == "Bala 1(Clone)")
         {
             this.gameObject.SetActive(false);
             canvas.enabled = true;
